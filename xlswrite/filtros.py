@@ -1,25 +1,24 @@
 import xlsxwriter
 
 workbook = xlsxwriter.Workbook("xls/filtros.xlsx")
-worksheet = workbook.add_worksheet("Ficha con filtros")
+worksheet1 = workbook.add_worksheet("Ficha con filtros por condición")
+# worksheet2 = workbook.add_worksheet("Ficha con filtros por condicion")
 
 # declaramos formatos a usar en celdas
 bold = workbook.add_format({"bold": True})
 
 # escribimos las cabeceras
-worksheet.write("A1", "#", bold)
-worksheet.write("B1", "Nombre", bold)
-worksheet.write("C1", "Nota 1", bold)
-worksheet.write("D1", "Nota 2", bold)
-worksheet.write("E1", "Nota 3", bold)
-worksheet.write("F1", "Promedio", bold)
+worksheet1.write("A1", "Nombre", bold)
+worksheet1.write("B1", "Nota 1", bold)
+worksheet1.write("C1", "Nota 2", bold)
+worksheet1.write("D1", "Nota 3", bold)
 
 # anchos de columna
-worksheet.set_column("A:A", 3)
-worksheet.set_column("B:B", 20)
-worksheet.set_column("C:F", 8)
+worksheet1.set_column("A:A", 20)
+worksheet1.set_column("B:D", 8)
 
-worksheet.autofilter("B1:F1") # filtro automatico
+worksheet1.autofilter("A1:D10") # filtro automatico
+worksheet1.filter_column("C", 'x > 5')
 
 # data a escribir
 datos = (
@@ -39,14 +38,19 @@ row = 1
 col = 0
 
 # iteramos para escribir las filas
-for nombre, nota_1, nota_2, nota_3 in (datos):
-  worksheet.write(row, col, row)
-  worksheet.write(row, col + 1, nombre)
-  worksheet.write(row, col + 2, nota_1)
-  worksheet.write(row, col + 3, nota_2)
-  worksheet.write(row, col + 4, nota_3)
-  worksheet.write(row, col + 5, (nota_1+nota_2+nota_3)/3)
+for row_data in (datos):
+  nota_2 = row_data[2]
+
+  # compruebamos si hay filas que coincidan con el filtro
+  if nota_2 > 5:
+    # la fila coincide con el filtro, muestra la fila normalmente
+    pass
+  else:
+    # ocultamos las filas que no coinciden con el filtro.
+    worksheet1.set_row(row, options={'hidden': True})
+
+  worksheet1.write_row(row, 0, row_data)
+
   row += 1
 
-worksheet.filter_column("B", "x == Oscan*")
 workbook.close()

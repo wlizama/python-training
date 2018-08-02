@@ -7,12 +7,10 @@ item1 = ET.SubElement(items, 'item')
 item2 = ET.SubElement(items, 'item')
 item1.set('name','item1')
 item2.set('name','item2')
-item1.text = 'item1abc'
-item2.text = 'item2abc'
+item1.text = 'Contenido del item 1'
+item2.text = 'Contenido del item 2'
 
-# tree = ET.ElementTree(data)
+tree = ET.ElementTree(data)
 
 # Creamos el archivo
-mydata = ET.tostring(data)  
-myfile = open("files/xml_sample_created1.xml", "w")  
-myfile.write(mydata)
+tree.write("files/xml_sample_created1.xml")

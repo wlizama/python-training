@@ -41,10 +41,10 @@ class ContactBook:
     def _save(self):
         with open('contacts.csv', 'w') as f:
             writer = csv.writer(f)
-            writer.writerow( ('name', 'phone', 'email') )
+            writer.writerow(('name', 'phone', 'email'))
 
             for contact in self._contacts:
-                writer.writerow( (contact.name, contact.phone, contact.email) )
+                writer.writerow((contact.name, contact.phone, contact.email))
 
     def _print_contact(self, contact):
         print('################################################')

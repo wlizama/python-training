@@ -101,7 +101,7 @@ def run():
         display_board(hidden_word, tries)
         current_letter = str(input('Escoge una letra: '))
 
-        os.system('clear') # linux o os x
+        os.system('clear')  # linux o os x
 
         letter_indexes = []
         for idx in range(len(word)):
@@ -128,6 +128,7 @@ def run():
             print('')
             print('¡Felicidades! Ganaste. La palabra es: {}'.format(word))
             break
+
 
 if __name__ == '__main__':
     print('B I E N V E N I D O S  A  A H O R C A D O S')

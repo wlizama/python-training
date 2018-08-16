@@ -1,5 +1,5 @@
-from PIL import Image, ImageDraw
-#, ImageFont
+from PIL import Image, ImageDraw  # , ImageFont
+
 # get an image
 base = Image.open("imagenes/imagen1.jpeg").convert('RGBA')
 

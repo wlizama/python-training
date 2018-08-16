@@ -56,4 +56,3 @@ def parent():
 
     print(first_child())
     print(second_child())
-

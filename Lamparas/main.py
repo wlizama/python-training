@@ -1,6 +1,7 @@
 import os
 from Lamp import Lamp
 
+
 def run():
     myLamp = Lamp(False)
 
@@ -13,7 +14,7 @@ def run():
             [s]alir
         '''))
 
-        os.system('clear') # linux o os x
+        os.system('clear')  # linux o os x
 
         if command == 'p':
             myLamp.turnOn()
@@ -21,8 +22,7 @@ def run():
             myLamp.turnOff()
         else:
             break
-            
+
 
 if __name__ == '__main__':
     run()
-

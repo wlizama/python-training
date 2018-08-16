@@ -70,6 +70,7 @@ KEYS = {
     '!': 'B',
 }
 
+
 def cypher(message):
     words = message.split(' ')
     cypher_message = []
@@ -106,7 +107,6 @@ def run():
 
     while True:
 
-
         command = str(input('''--- * --- * --- * --- * --- * --- * --- * ---
 
             Bienvenido a criptografía. ¿Qué deseas hacer?
@@ -117,13 +117,13 @@ def run():
         '''))
 
         if command == 'c':
-            os.system('clear') # linux o os x
+            os.system('clear')  # linux o os x
             message = str(input('Escribe tu mensaje: '))
             cypher_message = cypher(message)
             print(cypher_message)
 
         elif command == 'd':
-            os.system('clear') # linux o os x
+            os.system('clear')  # linux o os x
             message = str(input('Escribe tu mensaje tu cifrado: '))
             decypher_message = decipher(message)
             print(decypher_message)

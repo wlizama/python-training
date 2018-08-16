@@ -33,7 +33,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
         # Construct a server response.
         self.send_response(200)
-        self.send_header('Content-Disposition', 'attachment; filename=test.xlsx')
+        self.send_header('Content-Disposition',
+                         'attachment; filename=test.xlsx')
         self.send_header('Content-type',
                          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
         self.end_headers()

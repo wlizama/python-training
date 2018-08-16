@@ -5,7 +5,8 @@ hoy = date.today()
 fecha_nacimiento = date(1993, 6, 4)
 dias_desde = hoy - fecha_nacimiento
 
-print("Hoy es {}, han pasado {} dias desde que nací en {}".format(hoy, dias_desde, fecha_nacimiento))
+print("Hoy es {}, han pasado {} dias desde que nací en {}".format(
+    hoy, dias_desde, fecha_nacimiento))
 # Hoy es 2018-07-16, han pasado 9173 days, 0:00:00 dias desde que nací en 1993-06-04
 
 print("\n")

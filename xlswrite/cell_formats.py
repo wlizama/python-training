@@ -13,11 +13,11 @@ worksheet.write("B1", "Costo", bold)
 
 # data a escribir
 gastos = (
-  ["Alquiler", 600],
-  ["Comida", 80],
-  ["Gas", 30],
-  ["Pasajes", 20],
-  ["Internet", 120],
+    ["Alquiler", 600],
+    ["Comida", 80],
+    ["Gas", 30],
+    ["Pasajes", 20],
+    ["Internet", 120],
 )
 
 # las filas despues de las cabeceras
@@ -26,9 +26,9 @@ col = 0
 
 # iteramos para escribir las filas
 for item, cost in (gastos):
-  worksheet.write(row, col, item)
-  worksheet.write(row, col + 1, cost, moneda)
-  row += 1
+    worksheet.write(row, col, item)
+    worksheet.write(row, col + 1, cost, moneda)
+    row += 1
 
 # escribimos el total usando formula
 worksheet.write(row, 0, "Total", bold)

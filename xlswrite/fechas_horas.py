@@ -39,7 +39,7 @@ row = 1
 for date_format_str in date_formats:
 
     date_format = workbook.add_format({'num_format': date_format_str,
-                                      'align': 'left'})
+                                       'align': 'left'})
 
     worksheet.write_datetime(row, 0, date_time, date_format)
     worksheet.write_string(row, 1, date_format_str)

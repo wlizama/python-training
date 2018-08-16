@@ -11,7 +11,7 @@ class Lamp:
         _|=|_
        |_____|
     ''',
-    '''
+              '''
 
 
 
@@ -30,7 +30,6 @@ class Lamp:
     def turnOff(self):
         self._is_turn_on = False
         self._display_image()
-
 
     def turnOn(self):
         self._is_turn_on = True

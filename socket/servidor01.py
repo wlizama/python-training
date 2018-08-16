@@ -1,16 +1,17 @@
 import socket
 
 mi_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-mi_socket.bind(('localhost', 3179))
+
+local_hostname = socket.gethostname()
+
+mi_socket.bind((local_hostname, 31790))
 mi_socket.listen(5)
 
 while True:
     con, adrr = mi_socket.accept()
-    print("Conexion establecida")
-    print(adrr)
+    print("Conexion establecida {}".format(adrr))
 
     peticion = con.recv(1024)
-    print(repr(peticion))
+    print(str(peticion))
 
-    # con.send(b"Hola desde Server Socket!!!")
     con.close()

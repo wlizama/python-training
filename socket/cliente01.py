@@ -1,12 +1,13 @@
 import socket
 
 mi_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-mi_socket.connect(('localhost', 3179))
 
-mensaje = str(input(":"))
+local_hostname = socket.gethostname()
 
-mi_socket.send(bytearray(mensaje))
-respuesta = mi_socket.recv(1024)
+mi_socket.connect((local_hostname, 31790))
 
-print(repr(respuesta))
+mensaje = input("yo: ")
+
+mi_socket.send(str(mensaje).encode("utf-8"))
+
 mi_socket.close()

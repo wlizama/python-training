@@ -5,6 +5,7 @@ cursor = micon.cursor()
 
 # Creación de tabla si no existe
 cursor.execute("""CREATE TABLE IF NOT EXISTS Contactos(
+ID INTEGER PRIMARY KEY AUTOINCREMENT,
 Nombre VARCHAR(250),
 Apodo VARCHAR(100),
 Numero VARCHAR(10),
@@ -21,18 +22,18 @@ Cumpleanhos VARCHAR(10)
 
 
 # Inserción multiple
-# contactos = [
-#     ('Pedro Mensoza', 'Pancho Fierro', '123654789', '05/08'),
-#     ('Mary Lopez', 'Marimar', '#987456321', '03/11'),
-#     ('Enrique Atarez', 'Quique', '#989654123', '01/02'),
-#     ('Sebastian Estrada', 'Sebas', '896471235', '08/10'),
-#     ('Aurora Duque', 'Auro', '9584123684', '10/04'),
-#     ('Fernado Peralta', 'Ferd', '9236541879', '25/06')
-# ]
+contactos = [
+    ('Pedro Mensoza', 'Pancho Fierro', '123654789', '05/08'),
+    ('Mary Lopez', 'Marimar', '#987456321', '03/11'),
+    ('Enrique Atarez', 'Quique', '#989654123', '01/02'),
+    ('Sebastian Estrada', 'Sebas', '896471235', '08/10'),
+    ('Aurora Duque', 'Auro', '9584123684', '10/04'),
+    ('Fernado Peralta', 'Ferd', '9236541879', '25/06')
+]
 
-# cursor.executemany("""INSERT INTO Contactos VALUES (
-# ?,?,?,?
-# )""", contactos)
+cursor.executemany("""INSERT INTO Contactos VALUES (
+NULL,?,?,?,?
+)""", contactos)
 
 
 # Simple Select

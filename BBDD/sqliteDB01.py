@@ -50,17 +50,21 @@ for contacto in misContactos_orig:
 # )""", contactos)
 
 
-# Update
-cursor.execute("""UPDATE Contactos SET
-Apodo = 'Ferni',
-Cumpleanhos = '20/06'
-WHERE ID = 6
-""")
+# # Update
+# cursor.execute("""UPDATE Contactos SET
+# Apodo = 'Ferni',
+# Cumpleanhos = '20/06'
+# WHERE ID = 6
+# """)
+
+
+# Delete
+cursor.execute("DELETE from Contactos WHERE ID = 4")
 
 
 # Simple Select
 print(DELIMITADOR)
-print(" DESPUES de operaciones")
+print(" DESPUÉS de operaciones")
 print(DELIMITADOR)
 cursor.execute("SELECT * FROM Contactos")
 misContactos_mod = cursor.fetchall()

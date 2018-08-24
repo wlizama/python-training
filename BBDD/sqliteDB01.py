@@ -12,12 +12,27 @@ Cumpleanhos VARCHAR(10)
 )""")
 
 # Inserción de valores
-cursor.execute("""INSERT INTO Contactos VALUES (
-'Wily Colon',
-'Whale colon',
-'123789456',
-'12/12'
-)""")
+# cursor.execute("""INSERT INTO Contactos VALUES (
+# 'Wily Colon',
+# 'Whale colon',
+# '123789456',
+# '12/12'
+# )""")
+
+
+# Inserción multiple
+contactos = [
+    ('Pedro Mensoza', 'Pancho Fierro', '123654789', '05/08'),
+    ('Mary Lopez', 'Marimar', '#987456321', '03/11'),
+    ('Enrique Atarez', 'Quique', '#989654123', '01/02'),
+    ('Sebastian Estrada', 'Sebas', '896471235', '08/10'),
+    ('Aurora Duque', 'Auro', '9584123684', '10/04'),
+    ('Fernado Peralta', 'Ferd', '9236541879', '25/06')
+]
+
+cursor.executemany("""INSERT INTO Contactos VALUES (
+?,?,?,?
+)""", contactos)
 
 micon.commit()
 

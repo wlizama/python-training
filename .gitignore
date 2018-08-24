@@ -3,3 +3,4 @@ get-pip.py
 *.csv
 __pycache__
 .idea/
+*.db

@@ -21,12 +21,47 @@ con = pyodbc.connect("DRIVER={};SERVER={};UID={};PWD={};DATABASE={};".format(
 cursor = con.cursor()
 
 # Procedimiento sin parametros
-cursor.execute("{ CALL SP_ContactosLista }")
+# print("# Lista de Contactos")
+# cursor.execute("{ CALL SP_ContactosLista }")
 
-result = cursor.fetchall()
+# result = cursor.fetchall()
+# for contacto in result:
+# print(contacto)
 
-for contacto in result:
-    print(contacto)
+
+# # Procedimiento con parametros
+# params = ("wilycolon")
+# cursor.execute("{ CALL SP_ContactosBuscaXApodo ( ? ) }", params)
+
+# result = cursor.fetchall()
+# while result:
+#     print(result)
+#     if cursor.nextset():
+#         result = cursor.fetchall()
+#     else:
+#         result = None
+
+
+# Procedimiento con parametro de salida
+params = (
+    "Veronica Smith",
+    "Vero",
+    "#147852369",
+    "12/05"
+)
+
+sql = """\
+DECLARE @id int;
+exec SP_ContactosInsertar @id OUTPUT, ?, ?, ?, ?;
+SELECT @id;
+"""
+
+cursor.execute(sql, params)
+
+returnId = cursor.fetchval()
+
+print("Se insertó el registro ID: {}". format(returnId))
+
 
 con.commit()
 

@@ -15,6 +15,7 @@ import configparser
 driver_name = "ODBC Driver 17 for SQL Server"
 
 config = configparser.ConfigParser()
+
 config.read("dbconfig.ini")
 
 con = pyodbc.connect("DRIVER={};SERVER={};UID={};PWD={};DATABASE={};".format(
@@ -24,3 +25,19 @@ con = pyodbc.connect("DRIVER={};SERVER={};UID={};PWD={};DATABASE={};".format(
     config["SQL_SERVER"]["PWD"],
     config["SQL_SERVER"]["DATABASE"]
 ))
+
+cursor = con.cursor()
+
+# Creación de tabla si no existe
+cursor.execute("""IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Contactos' and TYPE='U')
+    CREATE TABLE Contactos (
+        id INT IDENTITY(1,1) PRIMARY KEY,
+        nombre VARCHAR(250),
+        apodo VARCHAR(100),
+        numero VARCHAR(10),
+        cumpleanhos VARCHAR(5)
+    )""")
+
+con.commit()
+
+con.close()

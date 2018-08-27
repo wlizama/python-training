@@ -38,6 +38,28 @@ cursor.execute("""IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Contactos'
         cumpleanhos VARCHAR(5)
     )""")
 
+
+# # Inserción multiple
+contactos = [
+    ('Pedro Mendoza', 'Pancho Fierro', '123654789', '05/08'),
+    ('Mary Lopez', 'Marimar', '#987456321', '03/11'),
+    ('Enrique Altarez', 'Quique', '#989654123', '01/02'),
+    ('Sebastian Estrada', 'Sebas', '896471235', '08/10'),
+    ('Aurora Duque', 'Auro', '9584123684', '10/04'),
+    ('Fernado Peralta', 'Ferd', '9236541879', '25/06')
+]
+
+cursor.executemany("""INSERT INTO Contactos (nombre, apodo, numero, cumpleanhos) VALUES (
+    ?,?,?,?
+    )""", contactos)
+
+# Simple Select
+cursor.execute("SELECT * FROM Contactos")
+misContactos_mod = cursor.fetchall()
+
+for contacto in misContactos_mod:
+    print(contacto)
+
 con.commit()
 
 con.close()

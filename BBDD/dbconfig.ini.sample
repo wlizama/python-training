@@ -1,0 +1,5 @@
+[SQL_SERVER]
+SERVER=ip_or_hostname
+DATABASE=database_name
+UID=db_user
+PWD=db_user_pass

@@ -72,7 +72,7 @@ for contacto in misContactos_orig:
 #     """)
 
 # Delete
-cursor.execute("DELETE from Contactos WHERE ID = 6")
+# cursor.execute("DELETE from Contactos WHERE ID = 6")
 
 # Simple Select
 print(DELIMITADOR)

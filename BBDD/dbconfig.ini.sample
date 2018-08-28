@@ -3,3 +3,9 @@ SERVER=ip_or_hostname
 DATABASE=database_name
 UID=db_user
 PWD=db_user_pass
+
+[MYSQL]
+USER=db_user
+PASSWORD=db_user_pass
+HOST=ip_or_hostname
+DATABASE=database_name

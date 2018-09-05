@@ -83,7 +83,7 @@ def main():
         creds = tools.run_flow(flow, store)
     service = build('gmail', 'v1', http=creds.authorize(Http()))
 
-    result = ListMessagesMatchingQuery(service, "me", "from:notifications@github.com")
+    result = ListMessagesMatchingQuery(service, "me", "filename:*pdf")
 
     print(result)
 

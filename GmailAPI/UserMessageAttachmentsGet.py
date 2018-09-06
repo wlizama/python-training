@@ -26,16 +26,21 @@ def GetAttachments(service, user_id, msg_id, store_dir):
 
     for part in message['payload']['parts']:
       if part['filename']:
+          path = ''.join([store_dir, part['filename']])
 
-        file_data = base64.urlsafe_b64decode(part['body']['data']
-                                             .encode('UTF-8'))
+          if 'data' in part['body']:
+              data = part['body']['data']
+          else:
+              att_id = part['body']['attachmentId']
+              att = service.users().messages().attachments().get(userId=user_id,
+                                                                 messageId=msg_id,
+                                                                 id=att_id).execute()
+              data = att["data"]
 
-        path = ''.join([store_dir, part['filename']])
+          file_data = base64.urlsafe_b64decode(data.encode('UTF-8'))
 
-        f = open(path, 'w')
-        f.write(file_data)
-        f.close()
-
+          with open(path, "wb") as fh:
+              fh.write(file_data)
   except errors.HttpError as err:
     print('An error occurred: %s' % err)
 
@@ -48,7 +53,7 @@ def main():
         creds = tools.run_flow(flow, store)
     service = build('gmail', 'v1', http=creds.authorize(Http()))
 
-    GetAttachments(service, "me", "", "/attachs")
+    GetAttachments(service, "me", "un_msg_id_valido_aqui", "./attachs/")
 
 if __name__ == '__main__':
     main()

@@ -42,3 +42,31 @@ Simple
 # """)
 # server.quit()
 #################################
+
+
+"""
+Con cuerpo HTML
+"""
+import email.message
+import smtplib
+
+SUBJECT = "Asuntillo desde Python"
+FROM_ADDR = "correo@emisor.net"
+FROM_ADDR_PASS = "unacontraseñaquenadiedesifrara"
+TO_ADDR = "correo@destino.com"
+
+body = """Este es el cuerpazo del <b>correo</b>"""
+
+msg = email.message.Message()
+msg["Subject"] = SUBJECT
+msg["From"] = FROM_ADDR
+msg["To"] = TO_ADDR
+msg.add_header('Content-Type','text/html')
+msg.set_payload(body)
+
+
+server = smtplib.SMTP_SSL('smtp.gmail.com', 465)  # mail server ip
+server.login(FROM_ADDR, FROM_ADDR_PASS)
+server.sendmail(msg["from"],[msg["To"]], msg.as_string())
+server.set_debuglevel(1)
+server.quit()

@@ -1,3 +1,7 @@
+"""
+Imprimir un mensaje despues de n segundos
+"""
+
 from threading import Timer
 
 def sayHi(nm):

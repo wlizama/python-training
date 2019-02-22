@@ -12,37 +12,37 @@ SCOPES = 'https://www.googleapis.com/auth/gmail.readonly'
 
 
 def GetAttachments(service, user_id, msg_id, store_dir):
-  """Get and store attachment from Message with given id.
+    """Get and store attachment from Message with given id.
 
-  Args:
+    Args:
     service: Authorized Gmail API service instance.
     user_id: User's email address. The special value "me"
     can be used to indicate the authenticated user.
     msg_id: ID of Message containing attachment.
     store_dir: The directory used to store attachments.
-  """
-  try:
-    message = service.users().messages().get(userId=user_id, id=msg_id).execute()
+    """
+    try:
+        message = service.users().messages().get(userId=user_id, id=msg_id).execute()
 
-    for part in message['payload']['parts']:
-      if part['filename']:
-          path = ''.join([store_dir, part['filename']])
+        for part in message['payload']['parts']:
+            if part['filename']:
+                path = ''.join([store_dir, part['filename']])
 
-          if 'data' in part['body']:
-              data = part['body']['data']
-          else:
-              att_id = part['body']['attachmentId']
-              att = service.users().messages().attachments().get(userId=user_id,
-                                                                 messageId=msg_id,
-                                                                 id=att_id).execute()
-              data = att["data"]
+                if 'data' in part['body']:
+                    data = part['body']['data']
+                else:
+                    att_id = part['body']['attachmentId']
+                    att = service.users().messages().attachments().get(userId=user_id,
+                                                                        messageId=msg_id,
+                                                                        id=att_id).execute()
+                    data = att["data"]
 
-          file_data = base64.urlsafe_b64decode(data.encode('UTF-8'))
+                file_data = base64.urlsafe_b64decode(data.encode('UTF-8'))
 
-          with open(path, "wb") as fh:
-              fh.write(file_data)
-  except errors.HttpError as err:
-    print('An error occurred: %s' % err)
+                with open(path, "wb") as fh:
+                    fh.write(file_data)
+    except errors.HttpError as err:
+        print('An error occurred: %s' % err)
 
 
 def main():

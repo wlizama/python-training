@@ -65,7 +65,7 @@ def image2():
 
 
 def tiff_header_for_CCITT(width, height, img_size, CCITT_group=4):
-    tiff_header_struct = '<' + '2s' + 'h' + 'l' + 'h' + 'hhll' * 8 + 'h'
+    tiff_header_struct = '<' + '2s' + 'H' + 'L' + 'H' + 'HHLL' * 8 + 'L'
     return struct.pack(tiff_header_struct,
                        b'II',  # Byte order indication: Little indian
                        42,  # Version number (always 42)

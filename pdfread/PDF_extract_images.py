@@ -57,6 +57,10 @@ from os import path
 import warnings
 import io
 from collections import namedtuple
+
+from pyzbar.pyzbar import decode
+
+
 warnings.filterwarnings("ignore")
 
 img_modes = {'/DeviceRGB': 'RGB', '/DefaultRGB': 'RGB',
@@ -131,23 +135,23 @@ def extract_images_from_pdf_page(xObject):
                     CCITT_group = 4
                 else:
                     CCITT_group = 3
-                data = xObject[obj]._data 
+                data = xObject[obj]._data
                 img_size = len(data)
                 tiff_header = tiff_header_for_CCITT(
                     size[0], size[1], img_size, CCITT_group)
-                im = Image.open(io.BytesIO(tiff_header + data))
-
+                img = Image.open(io.BytesIO(tiff_header + data))
+                
                 if xObject[obj].get('/BitsPerComponent') == 1:
                     # experimental condition
                     # http://users.fred.net/tds/leftdna/sciencetiff.html
-                    im = ImageOps.flip(im)
+                    img = ImageOps.flip(img)
 
                 imgByteArr = io.BytesIO()
                 img.save(imgByteArr,format='PNG')
                 image_list.append(PdfImage(data=imgByteArr,
                                    format='PNG',
                                    image_name=obj[1:]))
-            else:
+            else: 
                 print ('Unhandled image type: {}'.format(xObject[obj]['/Filter']))
         else:
             image_list += extract_images_from_pdf_page(xObject[obj])
@@ -156,8 +160,8 @@ def extract_images_from_pdf_page(xObject):
 
 if __name__ == '__main__':
     try:
-        filename = sys.argv[1]
-        pages = sys.argv[2:]
+        filename = 'D:\\my\\dir\\01-F021-00010588.PDF' #sys.argv[1]
+        pages = '1' #sys.argv[2:]
         pages = list(map(int, pages))
         abspath = path.abspath(filename)
     except BaseException:

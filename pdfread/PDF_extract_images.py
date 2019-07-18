@@ -42,6 +42,11 @@ Usage:
 
 # https://stackoverflow.com/questions/2693820/extract-images-from-pdf-without-resampling-in-python
 
+"""
+How to use:
+    python PDF_extract_images.py D:\\my\\dir\\01-F021-00010588.PDF 1
+"""
+
 import PyPDF2
 
 from PIL import Image, ImageOps
@@ -98,7 +103,7 @@ def extract_images_from_pdf_page(xObject):
             
             color_space = xObject[obj]['/ColorSpace']
             if '/FlateDecode' in xObject[obj]['/Filter']:
-                if isinstance(color_space, pdf.generic.ArrayObject) and color_space[0] == '/Indexed':
+                if isinstance(color_space, PyPDF2.generic.ArrayObject) and color_space[0] == '/Indexed':
                     color_space, base, hival, lookup = [v.getObject() for v in color_space] # pg 262
                 mode = img_modes[color_space]
 

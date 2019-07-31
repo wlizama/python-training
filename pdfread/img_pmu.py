@@ -1,5 +1,8 @@
 import fitz
-doc = fitz.open("file.pdf")
+from pyzbar.pyzbar import decode
+from PIL import Image
+
+doc = fitz.open("Q:\\my\\dir\\F001-1048.PDF")
 for i in range(len(doc)):
     for img in doc.getPageImageList(i):
         xref = img[0]
@@ -12,7 +15,5 @@ for i in range(len(doc)):
             pix1 = None
         pix = None
 
-
-# from pyzbar.pyzbar import decode
-#  from PIL import Image
-#  decode(Image.open("W:\\imag_extractes\\p0-7.png"))
+if __name__ == "__main__":
+    print(decode(Image.open("W:\\my\\images\\dir\\p0-7.png")))

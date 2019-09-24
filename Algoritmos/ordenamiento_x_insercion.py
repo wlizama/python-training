@@ -1,14 +1,17 @@
 ARRAY = [5, 3, 9, 1, 4, 13, 18, 10, 6, 15, 20, 19, 18, 11, 12]
 
 
-def insercionSort(arr):
-    idx_ini_iter = 1
-    idx_end_iter = len(arr)
-    for idx_iter in range(idx_ini_iter, idx_end_iter):
-        for idx_revs in reversed(range(idx_iter)):
-            if arr[idx_iter] < arr[idx_revs]:
-                arr[idx_revs] = arr[idx_iter]
-    
+def insertionSort(arr):
+    for i in range(1, len(arr)):
+        # elemento a comprar
+        current = arr[i]
+
+        # comparar el elemento actual con la parte ordenada e intercambiar
+        while i > 0 and arr[i-1] > current:
+            arr[i] = arr[i-1]
+            i = i-1
+            arr[i] = current
+
     return arr
 
 
@@ -18,7 +21,7 @@ def main():
     print("Longitud:", len(ARRAY))
     print("Max. Index:", len(ARRAY) - 1)
 
-    arr_sorted = insercionSort(ARRAY)
+    arr_sorted = insertionSort(ARRAY)
     print("Sorted:", arr_sorted)
 
 

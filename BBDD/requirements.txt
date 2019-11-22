@@ -1,2 +1,2 @@
 mysql-connector==2.1.6
-pyodbc==4.0.24
+pyodbc==4.0.27

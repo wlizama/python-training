@@ -1,4 +1,4 @@
-prompt-toolkit==1.0.14
+prompt-toolkit==3.0.2
 Pygments==2.4.2
 PyInquirer==1.0.3
 regex==2019.6.8

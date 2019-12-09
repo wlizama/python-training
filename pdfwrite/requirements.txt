@@ -1,2 +1,2 @@
-Pillow==5.2.0
+Pillow==6.2.1
 reportlab==3.5.32

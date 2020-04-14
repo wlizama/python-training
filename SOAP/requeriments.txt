@@ -4,7 +4,7 @@ cached-property==1.5.1
 certifi==2019.11.28
 chardet==3.0.4
 defusedxml==0.6.0
-idna==2.7
+idna==2.8
 isodate==0.6.0
 lxml==4.2.5
 pytz==2018.7
